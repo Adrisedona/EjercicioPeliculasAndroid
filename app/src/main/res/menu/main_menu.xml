@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemCartelera"
+        android:icon="@drawable/film"
+        android:title="a"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemSelecFavoritos"
+        android:icon="@drawable/heart"
+        android:title="Borrar"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemNuevaPelicula"
+        android:icon="@drawable/image"
+        android:title="3"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemColumnas"
+        android:icon="@drawable/number_square_two"
+        android:title="ItemColumnas"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemListaFavoritos"
+        android:icon="@drawable/broken_heart"
+        android:title="1"
+        app:showAsAction="always" />
+</menu>
