@@ -3,12 +3,16 @@ package com.example.gestionpeliculas;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class SelecFavoritos extends AppCompatActivity {
+
+	Toolbar tlbSelecFavoritos;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +24,10 @@ public class SelecFavoritos extends AppCompatActivity {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 			return insets;
 		});
+
+		tlbSelecFavoritos = findViewById(R.id.tlbSelecFavoritos);
+		setSupportActionBar(tlbSelecFavoritos);
+		ActionBar ctb = getSupportActionBar();
+		ctb.setDisplayHomeAsUpEnabled(true);
 	}
 }

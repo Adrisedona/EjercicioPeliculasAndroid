@@ -1,14 +1,19 @@
 package com.example.gestionpeliculas;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class Cartelera extends AppCompatActivity {
+
+	Toolbar tlbCartelera;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +25,20 @@ public class Cartelera extends AppCompatActivity {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 			return insets;
 		});
+
+		tlbCartelera = findViewById(R.id.tlbCartelera);
+		setSupportActionBar(tlbCartelera);
+		ActionBar ctb = getSupportActionBar();
+		ctb.setDisplayHomeAsUpEnabled(true);
 	}
+
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//			case android.R.id.home:
+//				onBackPressed();
+//				return true;
+//		}
+//		return super.onOptionsItemSelected(item);
+//	}
 }

@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 			return true;
 		}else if (id==R.id.itemSelecFavoritos){
 			Intent intent = new Intent(MainActivity.this, SelecFavoritos.class);
+			startActivity(intent);
 			return true;
 		}else if (id==R.id.itemColumnas){
 			if (tglColumnas = !tglColumnas) {
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 		}
 		else if (id==R.id.itemNuevaPelicula){
 			Intent intent = new Intent(MainActivity.this, NuevaPelicula.class);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
