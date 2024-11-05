@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -14,11 +14,22 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+	TextView txtTituloMain;
 	private boolean tglColumnas;
 	private boolean tglFavoritos;
+	private ArrayList<Pelicula> peliculas;
+	RecyclerView rv;
+	MyAdapterMain myAdapter;
+	RecyclerView.LayoutManager myLayoutManagerOneColumn;
+	RecyclerView.LayoutManager myLayoutManagerTwoColumn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +44,27 @@ public class MainActivity extends AppCompatActivity {
 
 		tglColumnas = false;
 		tglFavoritos = false;
+		txtTituloMain = findViewById(R.id.txtTitulo);
 
 		Toolbar barraDeHerramientas = findViewById(R.id.tlbMain);
 		setSupportActionBar(barraDeHerramientas);
+
+		peliculas = Datos.rellenaPeliculas();
+
+		myAdapter = new MyAdapterMain(peliculas, txtTituloMain);
+
+		rv = findViewById(R.id.rcv);
+
+		myLayoutManagerOneColumn = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+		myLayoutManagerTwoColumn = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+
+		rv.setAdapter(myAdapter);
+		rv.setLayoutManager(myLayoutManagerOneColumn);
+		rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+		getSupportActionBar().setTitle("Peliculas");
+		getSupportActionBar().setSubtitle(peliculas.size() + "");
+
 	}
 
 	@Override
@@ -67,8 +96,11 @@ public class MainActivity extends AppCompatActivity {
 		}else if (id==R.id.itemColumnas){
 			if (tglColumnas = !tglColumnas) {
 				item.setIcon(R.drawable.number_square_one);
+				rv.setLayoutManager(myLayoutManagerTwoColumn);
+
 			} else {
 				item.setIcon(R.drawable.number_square_two);
+				rv.setLayoutManager(myLayoutManagerOneColumn);
 			}
 			return true;
 		}
