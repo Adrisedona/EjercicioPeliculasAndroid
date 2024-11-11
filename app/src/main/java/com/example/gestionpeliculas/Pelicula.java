@@ -1,5 +1,7 @@
 package com.example.gestionpeliculas;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -84,5 +86,11 @@ public class Pelicula implements Serializable{
     }
     public void setDuracion(int duracion) {
         this.duracion=duracion;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format("%s\r\n%s", titulo, director);
     }
 }

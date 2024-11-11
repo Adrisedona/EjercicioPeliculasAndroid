@@ -2,12 +2,17 @@ package com.example.gestionpeliculas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +21,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 	MyAdapterMain myAdapter;
 	RecyclerView.LayoutManager myLayoutManagerOneColumn;
 	RecyclerView.LayoutManager myLayoutManagerTwoColumn;
+	ActivityResultLauncher<Intent> launcher;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 		});
 
 		tglColumnas = false;
-		tglFavoritos = false;
+		tglFavoritos = true;
 		txtTituloMain = findViewById(R.id.txtTitulo);
 
 		Toolbar barraDeHerramientas = findViewById(R.id.tlbMain);
@@ -55,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 		rv = findViewById(R.id.rcv);
 
-		myLayoutManagerOneColumn = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+		myLayoutManagerOneColumn = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 		myLayoutManagerTwoColumn = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
 
 		rv.setAdapter(myAdapter);
@@ -64,6 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
 		getSupportActionBar().setTitle("Peliculas");
 		getSupportActionBar().setSubtitle(peliculas.size() + "");
+
+		 launcher = registerForActivityResult(new
+				ActivityResultContracts.StartActivityForResult(), result -> {
+					if (result.getResultCode()==RESULT_OK) {
+						peliculas = (ArrayList<Pelicula>) result.getData().getSerializableExtra("peliculas2");
+					}
+				});
 
 	}
 
@@ -84,20 +98,26 @@ public class MainActivity extends AppCompatActivity {
 			return true;
 		}else if (id==R.id.itemListaFavoritos){
 			if (tglFavoritos = !tglFavoritos) {
-
+				rv.setAdapter(myAdapter);
 			} else {
-
+				ArrayList<Pelicula> peliculasFavoritas = new ArrayList<>();
+				for (Pelicula peli : this.peliculas) {
+					if (peli.getFavorita()) {
+						peliculasFavoritas.add(peli);
+					}
+				}
+				rv.setAdapter(new MyAdapterMain(peliculasFavoritas, txtTituloMain));
 			}
 			return true;
 		}else if (id==R.id.itemSelecFavoritos){
 			Intent intent = new Intent(MainActivity.this, SelecFavoritos.class);
-			startActivity(intent);
+			intent.putExtra("peliculas", peliculas);
+			launcher.launch(intent);
 			return true;
 		}else if (id==R.id.itemColumnas){
 			if (tglColumnas = !tglColumnas) {
 				item.setIcon(R.drawable.number_square_one);
 				rv.setLayoutManager(myLayoutManagerTwoColumn);
-
 			} else {
 				item.setIcon(R.drawable.number_square_two);
 				rv.setLayoutManager(myLayoutManagerOneColumn);
