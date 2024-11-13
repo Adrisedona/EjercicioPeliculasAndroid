@@ -19,18 +19,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="7dp">
 
         <TextView
             android:id="@+id/txtTitulo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Título:" />
+            android:layout_weight=".25"
+            android:text="Título:"
+            android:textAlignment="textEnd" />
 
         <EditText
             android:id="@+id/dtxtTitulo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight=".75"
             android:ems="10"
             android:hint="Introduce el título"
             android:inputType="text" />
@@ -39,18 +43,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="7dp">
 
         <TextView
             android:id="@+id/txtDirector"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Director:" />
+            android:layout_weight=".25"
+            android:text="Director:"
+            android:textAlignment="textEnd" />
 
         <EditText
             android:id="@+id/dtxtDirector"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight=".75"
             android:ems="10"
             android:hint="Introduce el director"
             android:inputType="text" />
@@ -60,18 +68,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="7dp">
 
         <TextView
             android:id="@+id/txtDuracion"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Duración:" />
+            android:layout_weight=".25"
+            android:text="Duración:"
+            android:textAlignment="textEnd" />
 
         <EditText
             android:id="@+id/dtxtDuracion"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight=".75"
             android:ems="10"
             android:hint="Introduce la duración"
             android:inputType="number" />
@@ -80,65 +92,105 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="7dp">
 
         <TextView
             android:id="@+id/txtSala"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Sala:" />
+            android:layout_weight=".25"
+            android:text="Sala:"
+            android:textAlignment="textEnd" />
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="203dp"
-            android:layout_height="23dp" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".75" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtClasificacionEdades"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clasificación por edades:" />
+        android:orientation="horizontal"
+        android:paddingTop="7dp">
 
-    <RadioGroup
-        android:layout_width="394dp"
-        android:layout_height="29dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="RadioButton" />
-
-        <RadioButton
-            android:id="@+id/radioButton4"
+        <TextView
+            android:id="@+id/txtClasificacionEdades"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:paddingLeft="10dp"
+            android:text="Clasificación por edades:" />
+    </LinearLayout>
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RadioButton" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RadioButton" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/txtFechaEstreno"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fecha de estreno:" />
+        android:orientation="horizontal"
+        android:paddingTop="7dp">
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <RadioGroup
+            android:id="@+id/rdg"
+            android:layout_width="394dp"
+            android:layout_height="29dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rdbG"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="G" />
+
+            <RadioButton
+                android:id="@+id/rdbPG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PG" />
+
+            <RadioButton
+                android:id="@+id/rdbR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="R" />
+
+            <RadioButton
+                android:id="@+id/rdbPG13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PG-13" />
+
+            <RadioButton
+                android:id="@+id/rdbNC17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NC-17" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtFechaEstreno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="Fecha de estreno:" />
+
+        <CalendarView
+            android:id="@+id/cld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 
 </LinearLayout>

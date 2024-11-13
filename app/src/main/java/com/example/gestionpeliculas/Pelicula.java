@@ -26,6 +26,17 @@ public class Pelicula implements Serializable{
         this.favorita=false;
     }
 
+    public Pelicula() {
+        this.clasi=0;
+        this.director="";
+        this.fecha=new Date();
+        this.portada=R.drawable.sincara;
+        this.sala="";
+        this.titulo="";
+        this.duracion=0;
+        this.favorita=false;
+    }
+
     public String getIdYoutube() {
         return idYoutube;
     }

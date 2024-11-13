@@ -82,6 +82,8 @@ public class MyAdapterMain extends RecyclerView.Adapter<MyAdapterMain.MyViewHold
 				setSelectedPos(posPulsada);
 				if (selectedPos>RecyclerView.NO_POSITION) {
 					txtTituloMain.setText(peliculas.get(selectedPos).getTitulo());
+				} else {
+					txtTituloMain.setText("");
 				}
 			});
 

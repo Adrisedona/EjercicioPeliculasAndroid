@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GestionPeliculas</string>
+    <string-array name="salas">
+        <item>Gran vía</item>
+        <item>Travesía</item>
+        <item>Plaza elíptica</item>
+        <item>Vialia</item>
+        <item>Multicines Norte</item>
+    </string-array>
 </resources>
