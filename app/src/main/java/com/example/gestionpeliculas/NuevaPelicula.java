@@ -1,6 +1,8 @@
 package com.example.gestionpeliculas;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -86,6 +88,7 @@ public class NuevaPelicula extends AppCompatActivity {
 			}
 		});
 
+		clasis = new HashMap<>();
 		clasis.put(R.id.rdbG, R.drawable.g);
 		clasis.put(R.id.rdbPG, R.drawable.pg);
 		clasis.put(R.id.rdbR, R.drawable.r);
@@ -104,6 +107,14 @@ public class NuevaPelicula extends AppCompatActivity {
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.mntGuardar) {
+			if (!txtTitulo.getText().toString().equals("") && !txtDirector.getText().toString().equals("") && !txtDuracion.getText().toString().equals("")) {
+				nuevaPelicula.setTitulo(txtTitulo.getText().toString());
+				nuevaPelicula.setDirector(txtDirector.getText().toString());
+				nuevaPelicula.setDuracion(Integer.parseInt(txtDuracion.getText().toString()));
+				nuevaPelicula.setClasi(clasis.get(rdg.getCheckedRadioButtonId()));
+				nuevaPelicula.setFecha(new Date(cld.getDate()));
+				finish();
+			}
 
 
 		}

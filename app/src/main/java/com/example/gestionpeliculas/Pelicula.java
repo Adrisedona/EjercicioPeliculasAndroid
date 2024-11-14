@@ -35,6 +35,7 @@ public class Pelicula implements Serializable{
         this.titulo="";
         this.duracion=0;
         this.favorita=false;
+        this.sinopsis = "";
     }
 
     public String getIdYoutube() {
