@@ -43,7 +43,7 @@ public class SelecFavoritos extends AppCompatActivity {
 		ctb.setDisplayHomeAsUpEnabled(true);
 		ctb.setTitle("Peliculas");
 
-		listaPeliculas = (ArrayList<Pelicula>) getIntent().getSerializableExtra("peliculas");
+		listaPeliculas = Datos.getInstance().getPelis("peliculas");
 
 		adapterPeliculas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, listaPeliculas);
 
@@ -70,10 +70,8 @@ public class SelecFavoritos extends AppCompatActivity {
 		int id=item.getItemId();
 		if (id == R.id.mntGuardar) {
 			Intent intent = new Intent();
-			intent.putExtra("peliculas2", listaPeliculas);
 			setResult(RESULT_OK, intent);
 			finish();
-
 		}
 		return super.onOptionsItemSelected(item);
 	}

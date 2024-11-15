@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 	MyAdapterMain myAdapter;
 	RecyclerView.LayoutManager myLayoutManagerOneColumn;
 	RecyclerView.LayoutManager myLayoutManagerTwoColumn;
-	ActivityResultLauncher<Intent> launcher;
+	Datos datos;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
 			return insets;
 		});
 
+		datos = Datos.getInstance();
+		datos.putExtra("peliculas", Datos.rellenaPeliculas());
+		this.peliculas = datos.getPelis("peliculas");
+
 		tglColumnas = false;
 		tglFavoritos = true;
 		txtTituloMain = findViewById(R.id.txtTitulo);
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 		Toolbar barraDeHerramientas = findViewById(R.id.tlbMain);
 		setSupportActionBar(barraDeHerramientas);
 
-		peliculas = Datos.rellenaPeliculas();
+
 
 		myAdapter = new MyAdapterMain(peliculas, txtTituloMain);
 
@@ -72,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
 		getSupportActionBar().setTitle("Peliculas");
 		getSupportActionBar().setSubtitle(peliculas.size() + "");
 
-		 launcher = registerForActivityResult(new
-				ActivityResultContracts.StartActivityForResult(), result -> {
-					if (result.getResultCode()==RESULT_OK) {
-						peliculas = (ArrayList<Pelicula>) result.getData().getSerializableExtra("peliculas2");
-					}
-				});
 
+	}
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		myAdapter.notifyDataSetChanged();
 	}
 
 	@Override
@@ -99,20 +103,21 @@ public class MainActivity extends AppCompatActivity {
 		}else if (id==R.id.itemListaFavoritos){
 			if (tglFavoritos = !tglFavoritos) {
 				rv.setAdapter(myAdapter);
+				getSupportActionBar().setSubtitle(peliculas.size() + "");
 			} else {
 				ArrayList<Pelicula> peliculasFavoritas = new ArrayList<>();
-				for (Pelicula peli : this.peliculas) {
+				for (Pelicula peli : peliculas) {
 					if (peli.getFavorita()) {
 						peliculasFavoritas.add(peli);
 					}
 				}
 				rv.setAdapter(new MyAdapterMain(peliculasFavoritas, txtTituloMain));
+				getSupportActionBar().setSubtitle(peliculasFavoritas.size() + "");
 			}
 			return true;
 		}else if (id==R.id.itemSelecFavoritos){
 			Intent intent = new Intent(MainActivity.this, SelecFavoritos.class);
-			intent.putExtra("peliculas", peliculas);
-			launcher.launch(intent);
+			startActivity(intent);
 			return true;
 		}else if (id==R.id.itemColumnas){
 			if (tglColumnas = !tglColumnas) {

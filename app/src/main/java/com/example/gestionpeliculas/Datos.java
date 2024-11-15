@@ -2,6 +2,8 @@ package com.example.gestionpeliculas;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Objects;
 
 class Datos {
 
@@ -14,8 +16,41 @@ class Datos {
 //            startActivity(webIntent);
 //        }
 //    }
-//
-//
+
+    private static Datos instance;
+    private final HashMap<String, Object> extras = new HashMap<>();
+
+    private Datos(){
+
+    }
+
+    public static Datos getInstance() {
+        if (instance == null) {
+            instance = new Datos();
+        }
+        return instance;
+    }
+
+    public void putExtra(String name, Object extra) {
+        extras.put(name, extra);
+    }
+
+    public Object getExtra(String name) {
+        return extras.get(name);
+    }
+
+    public boolean hasExtra(String name) {
+        return extras.containsKey(name);
+    }
+
+    public ArrayList<Pelicula> getPelis(String name) {
+        return (ArrayList<Pelicula>) extras.get(name);
+    }
+
+    public void clear() {
+        extras.clear();
+    }
+
     public static ArrayList<Pelicula> rellenaPeliculas(){
 
         ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();

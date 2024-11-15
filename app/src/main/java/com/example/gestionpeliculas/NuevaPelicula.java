@@ -59,7 +59,9 @@ public class NuevaPelicula extends AppCompatActivity {
 		tlbNuevaPelicula = findViewById(R.id.tlbNuevaPelicula);
 		setSupportActionBar(tlbNuevaPelicula);
 		ActionBar ctb = getSupportActionBar();
+		assert ctb != null;
 		ctb.setDisplayHomeAsUpEnabled(true);
+		ctb.setTitle("Peliculas");
 
 		txtTitulo = findViewById(R.id.dtxtTitulo);
 		txtDirector = findViewById(R.id.dtxtDirector);
@@ -107,12 +109,13 @@ public class NuevaPelicula extends AppCompatActivity {
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.mntGuardar) {
-			if (!txtTitulo.getText().toString().equals("") && !txtDirector.getText().toString().equals("") && !txtDuracion.getText().toString().equals("")) {
+			if (!txtTitulo.getText().toString().isEmpty() && !txtDirector.getText().toString().isEmpty() && !txtDuracion.getText().toString().isEmpty()) {
 				nuevaPelicula.setTitulo(txtTitulo.getText().toString());
 				nuevaPelicula.setDirector(txtDirector.getText().toString());
 				nuevaPelicula.setDuracion(Integer.parseInt(txtDuracion.getText().toString()));
 				nuevaPelicula.setClasi(clasis.get(rdg.getCheckedRadioButtonId()));
 				nuevaPelicula.setFecha(new Date(cld.getDate()));
+				Datos.getInstance().getPelis("peliculas").add(nuevaPelicula);
 				finish();
 			}
 

@@ -13,17 +13,20 @@
         android:theme="@style/Theme.GestionPeliculas"
         tools:targetApi="31">
         <activity
+            android:name=".PeliculaConDescipcion"
+            android:exported="false" />
+        <activity
             android:name=".SelecFavoritos"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".NuevaPelicula"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Cartelera"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

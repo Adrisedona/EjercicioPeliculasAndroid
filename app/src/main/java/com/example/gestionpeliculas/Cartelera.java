@@ -10,10 +10,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class Cartelera extends AppCompatActivity {
 
 	Toolbar tlbCartelera;
+	ArrayList<Pelicula> peliculas;
+	RecyclerView rv;
+	MyAdapterCartelera myAdapterCartelera;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +38,24 @@ public class Cartelera extends AppCompatActivity {
 		setSupportActionBar(tlbCartelera);
 		ActionBar ctb = getSupportActionBar();
 		ctb.setDisplayHomeAsUpEnabled(true);
+		ctb.setTitle("Peliculas");
+
+		peliculas = Datos.getInstance().getPelis("peliculas");
+
+		rv = findViewById(R.id.rcvCartelera);
+		myAdapterCartelera = new MyAdapterCartelera(peliculas, this);
+		rv.setAdapter(myAdapterCartelera);
+		rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+		rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 	}
 
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//			case android.R.id.home:
-//				onBackPressed();
-//				return true;
-//		}
-//		return super.onOptionsItemSelected(item);
-//	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				onBackPressed();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }
