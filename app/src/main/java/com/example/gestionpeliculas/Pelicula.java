@@ -105,4 +105,6 @@ public class Pelicula implements Serializable{
     public String toString() {
         return String.format("%s\r\n%s", titulo, director);
     }
+
+
 }

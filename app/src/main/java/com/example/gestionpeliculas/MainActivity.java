@@ -2,19 +2,13 @@ package com.example.gestionpeliculas;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -67,16 +61,13 @@ public class MainActivity extends AppCompatActivity {
 		setSupportActionBar(barraDeHerramientas);
 
 		btnHideTlb = findViewById(R.id.btnHideTlb);
-		btnHideTlb.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (!getSupportActionBar().isShowing()) {
-					btnHideTlb.setImageResource(R.drawable.zoom_out);
-					getSupportActionBar().show();
-				} else {
-					btnHideTlb.setImageResource(R.drawable.zoom_in);
-					getSupportActionBar().hide();
-				}
+		btnHideTlb.setOnClickListener(view -> {
+			if (!getSupportActionBar().isShowing()) {
+				btnHideTlb.setImageResource(R.drawable.zoom_out);
+				getSupportActionBar().show();
+			} else {
+				btnHideTlb.setImageResource(R.drawable.zoom_in);
+				getSupportActionBar().hide();
 			}
 		});
 

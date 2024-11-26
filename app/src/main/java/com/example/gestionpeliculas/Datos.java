@@ -3,19 +3,9 @@ package com.example.gestionpeliculas;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Objects;
 
 class Datos {
 
-//    public void watchYoutubeVideo(String id){
-//        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
-//        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
-//        try {
-//            startActivity(appIntent);
-//        } catch (ActivityNotFoundException ex) {
-//            startActivity(webIntent);
-//        }
-//    }
 
     private static Datos instance;
     private final HashMap<String, Object> extras = new HashMap<>();

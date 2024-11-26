@@ -2,6 +2,7 @@ package com.example.gestionpeliculas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,7 +51,6 @@ public class SelecFavoritos extends AppCompatActivity {
 		lstFavoritos = findViewById(R.id.lstFavoritos);
 		lstFavoritos.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lstFavoritos.setAdapter(adapterPeliculas);
-		lstFavoritos.setOnItemClickListener((adapterView, view, i, l) -> { listaPeliculas.get(i).setFavorita(lstFavoritos.isItemChecked(i)); adapterPeliculas.notifyDataSetChanged();});
 
 		for (int i = 0; i < lstFavoritos.getCount(); i++) {
 			lstFavoritos.setItemChecked(i, listaPeliculas.get(i).getFavorita());
@@ -71,6 +71,9 @@ public class SelecFavoritos extends AppCompatActivity {
 		if (id == R.id.mntGuardar) {
 			Intent intent = new Intent();
 			setResult(RESULT_OK, intent);
+			for (int i = 0; i < listaPeliculas.size(); i++) {
+				listaPeliculas.get(i).setFavorita(lstFavoritos.isItemChecked(i));
+			}
 			finish();
 		}
 		return super.onOptionsItemSelected(item);

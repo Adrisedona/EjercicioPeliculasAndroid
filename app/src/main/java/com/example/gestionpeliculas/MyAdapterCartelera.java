@@ -1,7 +1,6 @@
 package com.example.gestionpeliculas;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import java.time.format.*;
-import java.time.*;
 
 public class MyAdapterCartelera extends RecyclerView.Adapter<MyAdapterCartelera.MyViewHolderCartelera>{
 	ArrayList<Pelicula> peliculas;
