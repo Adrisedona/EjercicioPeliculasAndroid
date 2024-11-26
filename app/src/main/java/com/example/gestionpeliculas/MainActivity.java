@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 	private boolean tglColumnas;
 	private boolean tglFavoritos;
 	private ArrayList<Pelicula> peliculas;
+	private ImageButton btnHideTlb;
 	RecyclerView rv;
 	MyAdapterMain myAdapter;
 	RecyclerView.LayoutManager myLayoutManagerOneColumn;
@@ -50,17 +53,32 @@ public class MainActivity extends AppCompatActivity {
 		});
 
 		datos = Datos.getInstance();
-		datos.putExtra("peliculas", Datos.rellenaPeliculas());
+		if (!datos.hasExtra("peliculas")){
+			datos.putExtra("peliculas", Datos.rellenaPeliculas());
+		}
 		this.peliculas = datos.getPelis("peliculas");
 
 		tglColumnas = false;
 		tglFavoritos = true;
 		txtTituloMain = findViewById(R.id.txtTitulo);
 
+
 		Toolbar barraDeHerramientas = findViewById(R.id.tlbMain);
 		setSupportActionBar(barraDeHerramientas);
 
-
+		btnHideTlb = findViewById(R.id.btnHideTlb);
+		btnHideTlb.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if (!getSupportActionBar().isShowing()) {
+					btnHideTlb.setImageResource(R.drawable.zoom_out);
+					getSupportActionBar().show();
+				} else {
+					btnHideTlb.setImageResource(R.drawable.zoom_in);
+					getSupportActionBar().hide();
+				}
+			}
+		});
 
 		myAdapter = new MyAdapterMain(peliculas, txtTituloMain);
 

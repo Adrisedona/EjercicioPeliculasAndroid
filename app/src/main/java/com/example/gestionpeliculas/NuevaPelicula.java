@@ -117,6 +117,8 @@ public class NuevaPelicula extends AppCompatActivity {
 				nuevaPelicula.setFecha(new Date(cld.getDate()));
 				Datos.getInstance().getPelis("peliculas").add(nuevaPelicula);
 				finish();
+			} else {
+				Toast.makeText(this, "Introduce todos los datos", Toast.LENGTH_LONG).show();
 			}
 
 
