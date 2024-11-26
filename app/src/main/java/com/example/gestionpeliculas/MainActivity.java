@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
 			return true;
 		}else if (id==R.id.itemListaFavoritos){
 			if (tglFavoritos = !tglFavoritos) {
+				myAdapter.selectedPos = -1;
+				txtTituloMain.setText("");
 				rv.setAdapter(myAdapter);
 				getSupportActionBar().setSubtitle(peliculas.size() + "");
 			} else {
@@ -120,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 						peliculasFavoritas.add(peli);
 					}
 				}
+				txtTituloMain.setText("");
 				rv.setAdapter(new MyAdapterMain(peliculasFavoritas, txtTituloMain));
 				getSupportActionBar().setSubtitle(peliculasFavoritas.size() + "");
 			}

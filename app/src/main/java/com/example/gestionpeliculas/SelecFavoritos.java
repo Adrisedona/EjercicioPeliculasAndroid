@@ -48,6 +48,7 @@ public class SelecFavoritos extends AppCompatActivity {
 
 		adapterPeliculas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, listaPeliculas);
 
+
 		lstFavoritos = findViewById(R.id.lstFavoritos);
 		lstFavoritos.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		lstFavoritos.setAdapter(adapterPeliculas);
@@ -60,7 +61,7 @@ public class SelecFavoritos extends AppCompatActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater menuInflater=getMenuInflater();
+		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.menu_con_guardado,menu);
 		return true;
 	}
